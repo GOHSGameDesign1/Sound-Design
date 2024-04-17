@@ -7,8 +7,9 @@ public class Sound
 {
     public string name;
     public AudioClip clip;
-    // public float volume; 
+    public float volume; 
     // public float pitch;
+    public bool looping;
 
     [HideInInspector]
     public AudioSource source;
