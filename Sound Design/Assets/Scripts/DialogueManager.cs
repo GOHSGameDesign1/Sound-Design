@@ -11,10 +11,23 @@ public class DialogueManager : MonoBehaviour
     public delegate void ChangeText(string currentString);
     public static event ChangeText changeText;
 
+
+    public static DialogueManager instance;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    public static DialogueManager GetInstance() { return instance; }
+
     // Start is called before the first frame update
     void Start()
     {
-        currentLineCounter = 0;
+        currentLineCounter = -1;
         currentLine = dialogueList[0];
     }
 
@@ -26,10 +39,10 @@ public class DialogueManager : MonoBehaviour
 
     public void AdvanceDialogue()
     {
-        if (currentLineCounter < dialogueList.Count)
+        if (currentLineCounter + 1 < dialogueList.Count)
         {
-            changeText(dialogueList[currentLineCounter]);
             currentLineCounter++;
+            changeText(dialogueList[currentLineCounter]);
         }
     }
 

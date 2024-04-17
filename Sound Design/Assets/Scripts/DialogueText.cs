@@ -33,9 +33,14 @@ public class DialogueText : MonoBehaviour
     {
         textMeshProUGUI.text = string.Empty;
         WaitForSeconds waitTime = new WaitForSeconds(scrollTime);
-        for (int i = 0; i < line.Length; i++)
+        for (int i = 0; i < line.Length; i+=2)
         {
             textMeshProUGUI.text += line[i];
+            if (i + 1 < line.Length)
+            {
+                textMeshProUGUI.text += line[i + 1];
+            }
+            AudioManager.GetInstance().Play("Scroll");
             yield return waitTime;
         }
     }
