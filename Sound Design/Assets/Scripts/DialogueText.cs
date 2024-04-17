@@ -6,6 +6,12 @@ using TMPro;
 public class DialogueText : MonoBehaviour
 {
     public TextMeshProUGUI textMeshProUGUI;
+    public float scrollTime;
+
+    private void Awake()
+    {
+        textMeshProUGUI = GetComponent<TextMeshProUGUI>();
+    }
 
     private void OnEnable()
     {
@@ -17,20 +23,20 @@ public class DialogueText : MonoBehaviour
         DialogueManager.changeText -= showText;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void showText(string currentString)
     {
-        textMeshProUGUI.text = currentString;
+        StopAllCoroutines();
+        StartCoroutine(scrollText(currentString));
+    }
+
+    IEnumerator scrollText(string line)
+    {
+        textMeshProUGUI.text = string.Empty;
+        WaitForSeconds waitTime = new WaitForSeconds(scrollTime);
+        for (int i = 0; i < line.Length; i++)
+        {
+            textMeshProUGUI.text += line[i];
+            yield return waitTime;
+        }
     }
 }
