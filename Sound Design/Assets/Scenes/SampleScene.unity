@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Scroll
-    clip: {fileID: 8300000, guid: 2f6a4a5625c52004387592b78146d719, type: 3}
+    clip: {fileID: 8300000, guid: 034a9f6fc3361f84496cff8086732a64, type: 3}
     volume: 1
     looping: 0
     source: {fileID: 0}
